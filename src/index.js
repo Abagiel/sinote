@@ -1,3 +1,1 @@
-import './sass/main.scss';
-
-console.log('Working');
+import './sass/main.scss'; 

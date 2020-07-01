@@ -7,7 +7,7 @@
   },
 
   "rules": {
-    "linebreak-style": "off"
+
   },
 
   "extends": ["eslint:recommended", "google"]

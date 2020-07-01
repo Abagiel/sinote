@@ -1,0 +1,17 @@
+.docs__toolbar {
+	position: absolute;
+	top: $header-h;
+	left: 0;
+	right: 0;
+
+	display: flex;
+	height: $toolbar-h;
+	padding: .7rem 1rem;
+
+	border-top: 1px solid $border-color;
+	border-bottom: 1px solid $border-color;
+
+	& .btn {
+		@include btn($focus-green);
+	}
+}
