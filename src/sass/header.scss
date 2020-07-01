@@ -1,0 +1,46 @@
+.docs__header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: $header-h;
+	padding: .8rem .6rem 0;
+
+	& .input {
+		z-index: 10000;
+
+		height: 3rem;
+		margin: 0;
+		min-width: 1px;
+		padding: .2rem .8rem;
+
+		border: 1px solid transparent;
+		border-radius: 5px;
+		color: #000;
+		cursor: pointer;
+		font-size: 1.8rem;
+		line-height: 22;
+		outline: none;
+		text-align: center;
+
+		&:hover {
+			border: 1px solid $border-color;
+		}
+		&:focus {
+			border: 2px solid $focus-green;
+		}
+	}
+
+	& > div {
+		display: flex;
+	}
+
+	& .btn {
+		z-index: 10000;
+		@include btn($focus-red);
+	}
+}
