@@ -1,0 +1,74 @@
+.docs__ruler {
+	position: absolute;
+	top: $header-h + $toolbar-h;
+	left: 0;
+	right: 0;
+
+	.ruler-v {
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		height: $textarea-h + $textarea-p-t - $ruler-w;
+		margin-top: $ruler-w;
+		width: $ruler-w;
+
+		border-right: 2px solid $border-color;
+
+		.top,
+		.bottom {
+			position: absolute;
+			left: 0;
+
+			height: .6rem;
+			width: 100%;
+
+			background: $border-color;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.top {
+			top: 0;
+		}
+		.bottom {
+			bottom: 0;
+		}
+	}
+
+	.ruler-h {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+
+		height: $ruler-w;
+
+		border-bottom: 2px solid $border-color;
+
+		.left,
+		.right {
+			position: absolute;
+			top: 0;
+
+			height: 100%;
+			width: .6rem;
+
+			background: $border-color;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.left {
+			left: 0;
+		}
+		.right {
+			right: 0;
+		}
+	}
+
+	.top:hover,
+	.bottom:hover,
+	.right:hover,
+	.left:hover {
+		background: $focus-green;
+	}
+}

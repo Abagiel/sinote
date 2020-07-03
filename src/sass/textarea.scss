@@ -4,13 +4,17 @@
 	left: 0;
 	right: 0;
 
-	padding-left: 8rem;
-	padding-right: 8rem;
+	padding-left: $textarea-p-l + $ruler-w;
+	padding-right: $textarea-p-r;
+	padding-top: $textarea-p-t;
+	padding-bottom: $textarea-p-b;
 
 	& .textarea {
-		margin-top: 5rem;
-		min-height: 50vh;
-		padding: 2.5cm;
+		min-height: $textarea-h;
+		padding-left: $textarea-insidep-l;
+		padding-right: $textarea-insidep-r;
+		padding-top: $textarea-insidep-t;
+		padding-bottom: $textarea-insidep-b;
 		width: 100%;
 
 		border: none;
