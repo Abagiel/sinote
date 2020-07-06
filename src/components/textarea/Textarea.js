@@ -13,14 +13,12 @@ export class Textarea extends DocsComponent {
 
 	toHTML() {
 		return `
-			<textarea class="textarea"></textarea>
+			<textarea class="textarea" data-type="resizable"></textarea>
 			`;
 	}
 
 	onInput(event) {
-		console.log(event.target.textContent.trim())
 	}
 	onClick(event) {
-		console.log('Click')
 	}
 } 

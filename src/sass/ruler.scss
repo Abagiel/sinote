@@ -14,24 +14,41 @@
 		width: $ruler-w;
 
 		border-right: 2px solid $border-color;
+		border-bottom: 2px solid $border-color;
 
 		.top,
 		.bottom {
 			position: absolute;
 			left: 0;
 
-			height: .6rem;
+			display: flex;
+			align-items: center;
+			height: $ruler-element;
 			width: 100%;
 
 			background: $border-color;
 			border-radius: 5px;
-			cursor: pointer;
+			cursor: row-resize;
 		}
 		.top {
-			top: 0;
+			top: $textarea-p-t + $textarea-insidep-t - $ruler-w - $ruler-element / 2;
 		}
 		.bottom {
-			bottom: 0;
+			bottom: $textarea-p-b + $textarea-insidep-b - $ruler-element / 2;
+		}
+
+		.top::after,
+		.bottom::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			z-index: -100;
+
+			height: 1px;
+			width: 100vw;
+
+			background: $focus-green;
+			opacity: 0;
 		}
 	}
 
@@ -49,19 +66,35 @@
 		.right {
 			position: absolute;
 			top: 0;
-
+			
+			display: flex;
+			justify-content: center;
 			height: 100%;
-			width: .6rem;
+			width: $ruler-element;
 
 			background: $border-color;
 			border-radius: 5px;
-			cursor: pointer;
+			cursor: col-resize;
 		}
 		.left {
-			left: 0;
+			left: $ruler-w + $textarea-p-l + $textarea-insidep-l - $ruler-element / 2;
 		}
 		.right {
-			right: 0;
+			right: $textarea-p-r + $textarea-insidep-r - $ruler-element / 2;
+		}
+
+		.left::after,
+		.right::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			z-index: -100;
+
+			height: $textarea-h + $textarea-p-t;
+			width: 1px;
+
+			background: $focus-green;
+			opacity: 0;
 		}
 	}
 
@@ -70,5 +103,13 @@
 	.right:hover,
 	.left:hover {
 		background: $focus-green;
+	}
+
+	.top:active::after,
+	.bottom:active::after,
+	.left:active::after,
+	.right:active::after {
+		opacity: 1;
+		z-index: 1;
 	}
 }

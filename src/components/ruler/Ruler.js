@@ -1,4 +1,5 @@
 import {DocsComponent} from '@core/DocsComponent';
+import {resize} from '@/components/ruler/ruler.resize';
 
 export class Ruler extends DocsComponent {
 	static className = 'docs__ruler';
@@ -7,25 +8,27 @@ export class Ruler extends DocsComponent {
 	constructor($root) {
 		super($root, {
 			name: 'Ruler',
-			listeners: ['click']
+			listeners: ['mousedown']
 		});
 	}
 
 	toHTML() {
 		return `
 			<div class="ruler-h">
-				<div class="left"></div>
-				<div class="right"></div>
+				<div class="left" data-resize="left" ></div>
+				<div class="right" data-resize="right" ></div>
 			</div>
 
 			<div class="ruler-v">
-				<div class="top"></div>
-				<div class="bottom"></div>
+				<div class="top" data-resize="top" ></div>
+				<div class="bottom" data-resize="bottom" ></div>
 			</div>
 		 `;
 	}
 
-	onClick(event) {
-		console.log("OnInput Ruler")
+	onMousedown(event) {
+		if (event.target.dataset.resize) {
+			resize(event);
+		}
 	}
 } 
