@@ -37,6 +37,24 @@ class Dom {
 
 		return this;
 	}
+
+	getParentNode() {
+		return this.$el.parentNode;
+	}
+
+	getCoords() {
+		return this.$el.getBoundingClientRect();
+	}
+	getStyles() {
+		return getComputedStyle(this.$el);
+	}
+
+	css(styles = {}) {
+		Object.keys(styles)
+					.forEach(key => {
+						this.$el.style[key] = styles[key];			
+					});
+	}
 }
 
 export function $(selector) {
