@@ -1,12 +1,24 @@
 import {DocsComponent} from '@core/DocsComponent';
+import {changeTitle} from '@/redux/actions';
+import {defaultTitle} from '@/constants';
+import {$} from '@core/dom';
 
 export class Header extends DocsComponent {
 	static className = 'docs__header';
 	static parentTag = 'header';
 
+	constructor($root, options) {
+		super($root, {
+			name: 'Header',
+			listeners: ['input'],
+			...options
+		})
+	}
+
 	toHTML() {
+		const title = this.store.getState().title || defaultTitle;
 		return `
-			<input type="text" class="input" value="New Document"/>
+			<input type="text" class="input" value="${title}"/>
 
 					<div>
 						<div class="btn">
@@ -17,5 +29,10 @@ export class Header extends DocsComponent {
 						</div>
 					</div>
 		 `;
+	}
+
+	onInput(event) {
+		const $target = $(event.target);
+		this.$dispatch(changeTitle($target.text()))
 	}
 } 

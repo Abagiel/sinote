@@ -41,6 +41,9 @@ class Dom {
 	getParentNode() {
 		return this.$el.parentNode;
 	}
+	getFirstChild() {
+		return this.$el.firstElementChild;
+	}
 
 	getCoords() {
 		return this.$el.getBoundingClientRect();
@@ -54,6 +57,14 @@ class Dom {
 					.forEach(key => {
 						this.$el.style[key] = styles[key];			
 					});
+	}
+
+	text() {
+		return this.$el.value;
+	}
+
+	dataset(value) {
+		return this.$el.dataset[value];
 	}
 }
 

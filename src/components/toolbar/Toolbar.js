@@ -1,40 +1,44 @@
-import {DocsComponent} from '@core/DocsComponent';
+import {DocsStateComponent} from '@core/DocsStateComponent';
+import {createToolbar} from '@/components/toolbar/toolbar.template';
+import {$} from '@core/dom';
+import {defaultStates} from '@/constants';
 
-export class Toolbar extends DocsComponent {
+export class Toolbar extends DocsStateComponent {
 	static className = 'docs__toolbar';
 	static parentTag = 'aside';
 
-	constructor($root) {
+	constructor($root, options) {
 		super($root, {
 			name: 'Toolbar',
-			listeners: ['click']
+			listeners: ['click'],
+			subscribe: ['currentStyles'],
+			...options
 		});
 	}
 
+	prepare() {
+		this.initState(defaultStates);
+	}
+
+	get template() {
+		return createToolbar({...defaultStates,...this.store.getState().currentStyles})
+	}
+
 	toHTML() {
-		return `
-			<div class="btn">
-							<i class="material-icons">format_align_left</i>
-					</div>
-					<div class="btn">
-							<i class="material-icons">format_align_center</i>
-					</div>
-					<div class="btn">
-							<i class="material-icons">format_align_right</i>
-					</div>
-					<div class="btn">
-							<i class="material-icons">format_bold</i>
-					</div>
-					<div class="btn">
-							<i class="material-icons">format_italic</i>
-					</div>
-					<div class="btn">
-							<i class="material-icons">format_underline</i>
-					</div>
-		 `;
+		return this.template
+	}
+
+	storeChanged(changes) {
+		this.setState(changes.currentStyles);
 	}
 
 	onClick(event) {
-		console.log("OnInput Toolbar")
+		const $target = $(event.target);
+		if ($target.dataset('type') === 'button') {
+			const value = JSON.parse($target.dataset('value'));
+			const key = Object.keys(value)[0];
+			this.$emit('toolbar:applyStyle', value);
+			this.setState({[key]: value[key]})
+		}
 	}
 } 
