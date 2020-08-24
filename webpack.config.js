@@ -41,7 +41,7 @@ module.exports = {
     extensions: ['.js'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      '@core': path.resolve(__dirname, 'src/core'),
+      '@base': path.resolve(__dirname, 'src/base'),
     },
   },
 

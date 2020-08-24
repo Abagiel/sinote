@@ -1,0 +1,22 @@
+.header {
+	padding: .5rem 1.5rem;
+
+	outline: 3px solid transparent;
+	transition: outline .3s;
+
+	&:hover {
+		outline: 3px solid hsl(0 0% 95%);
+	}
+	&:focus {
+		outline: 3px solid hsl(0 50% 50%);
+	}
+
+	&-container {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		padding: 1rem 0;
+
+		font-size: 3rem;
+	}
+}

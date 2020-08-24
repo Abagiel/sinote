@@ -1,0 +1,24 @@
+.textarea {
+	&-container {
+		position: relative;
+	}
+
+	&-editor {
+		padding: 3rem;
+
+		border-radius: 5px;
+  	background: hsl(0 0% 95%);
+  	font-size: 21px;
+  	word-wrap: anywhere;
+
+		&__label {
+			position: absolute;
+  		bottom: 10px;
+  		right: 10px;
+
+  		color: hsl(0 0% 70%);
+  		font-size: 16px;
+  		font-weight: bold;
+		}
+	}
+}

@@ -1,0 +1,33 @@
+.toolbar {
+	&-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, 30px);
+		grid-row-gap: .5rem;
+		grid-column-gap: .5rem;
+		justify-content: center;
+		margin-bottom: 1rem;
+		padding: 0.5rem;
+
+		background: #fff;
+		border-bottom: 2px solid #fff;
+	}
+
+	&-btn {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0;
+		height: 30px;
+		width: 30px;
+
+		background: transparent;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background .3s;
+
+		&:hover {
+			background: hsl(0 0% 95%);
+		}
+	}
+}

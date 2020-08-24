@@ -1,0 +1,70 @@
+.dashboard {
+	&-container {
+		padding: 3rem;
+	}
+
+	&-manage {
+		display: flex;
+		justify-content: center;
+	}
+
+	&-add {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		height: 12rem;
+		width: 12rem;
+
+		border-radius: 5px;
+		color: #000;
+		font-size: 5rem;
+		font-weight: bold;
+		text-decoration: none;
+		transition: background .3s,
+								color .3s;
+
+		&:hover {
+			background: hsl(140 50% 50%);
+			color: #fff;
+		}
+	}
+
+	&-notes {
+		padding-top: 3rem;
+
+		border-top: 3px solid hsl(0 0% 95%);
+		
+		&__fields {
+			display: flex;
+			justify-content: space-between;
+			padding: .4rem 2rem;
+
+			font-size: 1.8rem;
+		}
+
+		&__list {
+			padding: 0;
+
+			list-style: none;
+		}
+
+		&__link {
+			padding: .4rem 2rem;
+			display: flex;
+			justify-content: space-between;
+
+			border-radius: 5px;
+			color: hsl(140 50% 40%);
+			font-size: 2.1rem;
+			text-decoration: none;
+			transition: background .3s,
+									color .3s;
+
+			&:hover {
+				background: hsl(0 0% 95%);
+				color: hsl(140 50% 30%);
+			}
+		}
+
+	}
+}
