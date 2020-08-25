@@ -1,34 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name=viewport content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-	<link rel="shortcut-icon" href="favicon.ico">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-
-	<title>Untitled</title>
+  <meta charset="UTF-8">
+  <meta name=viewport content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Sinote</title>
 </head>
+
 <body>
-		<div id="app">
-			<div class="notes">
-
-				<header class="docs__header">
-					<input type="text" class="input" value="New Document"/>
-
-					<div>
-						<div class="btn">
-							<i class="material-icons">delete_forever</i>
-						</div>
-						<div class="btn">
-							<i class="material-icons">exit_to_app</i>
-						</div>
-					</div>
-				</header>
-
-			</div>
-		</div>
+  <div id="app">
+    <div class="note-container">
+      <div class="header-container">
+        <div class="header" contenteditable>Title</div>
+        <a href="#dashboard" class="header-exit">
+          <span class="material-icons">exit_to_app</span>
+        </a>
+      </div>
+      <div class="toolbar-container">
+        <button class="toolbar-btn" data-btn="bold">
+          <span class="material-icons" data-btn="bold">format_bold</span>
+        </button>
+        <button class="toolbar-btn" data-btn="underline">
+          <span class="material-icons" data-btn="underline">format_underline</span>
+        </button>
+        <button class="toolbar-btn" data-btn="italic">
+          <span class="material-icons" data-btn="italic">format_italic</span>
+        </button>
+        <button class="toolbar-btn" data-btn="strikeThrough">
+          <span class="material-icons" data-btn="strikeThrough">strikethrough_s</span>
+        </button>
+        <button class="toolbar-btn" data-btn="justifyLeft">
+          <span class="material-icons" data-btn="justifyLeft">format_align_left</span>
+        </button>
+        <button class="toolbar-btn" data-btn="justifyCenter">
+          <span class="material-icons" data-btn="justifyCenter">format_align_center</span>
+        </button>
+        <button class="toolbar-btn" data-btn="justifyRight">
+          <span class="material-icons" data-btn="justifyRight">format_align_right</span>
+        </button>
+        <button class="toolbar-btn" data-btn="justifyFull">
+          <span class="material-icons" data-btn="justifyFull">format_align_justify</span>
+        </button>
+        <button class="toolbar-btn" data-btn="insertOrderedList">
+          <span class="material-icons" data-btn="insertOrderedList">format_list_numbered</span>
+        </button>
+        <button class="toolbar-btn" data-btn="insertUnorderedList">
+          <span class="material-icons" data-btn="insertUnorderedList">format_list_bulleted</span>
+        </button>`
+      </div>
+      <div class="textarea-container">
+      	<div class="textarea-editor" contenteditable="true">some html</div>
+      </div>
+      <span class="textarea-editor__label">0/500</span>
+    </div>
+  </div>
 </body>
+
 </html>

@@ -13,28 +13,30 @@
 </head>
 <body>
 		<div id="app">
-		  <div class="db">
-		  	
-				<header class="db__header">
-				  <h1>Dashboard</h1>
-				</header>
+		  <div class="dashboard-container">
+		  	<h2>Dashboard Notes</h2>
+		  	<div class="dashboard-manage">
+		  		<a class="dashboard-add" href="#">+</a>
+		  	</div>
 
-				<div class="db__new">
-					<div class="db__view">
-						<a href="#" class="db__create">New <br> Note</a>
-					</div>
-				</div>
+		  	<div class="dashboard-notes">
+		  		<div class="dashboard-notes__fields">
+		  			<span>Title</span>
+		  			<span>Create Date</span>
+		  		</div>
 
-				<main class="db__table db__view">
-					<div class="db__list-header">
-						<span>Title</span>
-						<span>Open date</span>
-					</div>
-
-					<ul class="db__list"></ul>
-
-				</main>
-
+		  		<ul class="dashboard-notes__list">
+		  			<li class="dashboard-notes__list-item">
+		  				<a href="#" class="dashboard-notes__link">
+		  					<span>Title</span>
+		  					<span>Date</span>
+		  				</a>
+		  				<div class="dashboard-notes__list-del" data-btn="delete-item" data-key="note:234234243242">
+		  					<span class="material-icons" data-btn="delete-item" data-key="note:234234243242">delete</span>
+		  				</div>
+		  			</li>
+		  		</ul>
+		  	</div>		
 		  </div>
 		</div>
 </body>

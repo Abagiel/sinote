@@ -25,6 +25,7 @@ export class DashboardPage extends Page {
 
   createDB(key) {
     addHTML(this.root, `
+      <h2>Dashboard Notes</h2>
 			<div class="dashboard-manage">
 				<a class="dashboard-add" href="#note/${key}">+</a>
 			</div>
