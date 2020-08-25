@@ -1,6 +1,6 @@
 import { EditorComponent } from '@base/EditorComponent';
 import { FORMAT_BTNS } from '@/constants';
-import { createElem } from '@base/utils';
+import { createElem, toArray, getElem } from '@base/utils';
 
 export class Toolbar extends EditorComponent {
 	static className = 'toolbar-container';
@@ -34,7 +34,7 @@ export class Toolbar extends EditorComponent {
 	}
 
 	findAllBtns() {
-		this.btns = Array.from(document.querySelectorAll('.toolbar-btn'));
+		this.btns = toArray(getElem('.toolbar-btn', true));
 	}
 
 	btnsStatus = () => {

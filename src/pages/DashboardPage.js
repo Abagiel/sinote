@@ -1,5 +1,5 @@
 import { Page } from './Page';
-import { createElem, addHTML } from '@base/utils';
+import { createElem, addHTML, getElem, toArray } from '@base/utils';
 import { createTableRecords } from '@/pages/dashboard.functions';
 
 export class DashboardPage extends Page {
@@ -41,7 +41,7 @@ export class DashboardPage extends Page {
   }
 
   afterRender() {
-    this.items = Array.from(document.querySelectorAll('.dashboard-notes__list-item'));
+    this.items = toArray(getElem('.dashboard-notes__list-item', true));
   }
 
   destroy() {

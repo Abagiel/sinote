@@ -1,4 +1,5 @@
 import { EditorComponent } from '@base/EditorComponent';
+import { getElem } from '@base/utils';
 
 export class TextareaLabel extends EditorComponent {
   static className = 'label-container';
@@ -20,7 +21,7 @@ export class TextareaLabel extends EditorComponent {
   }
 
   changeLabelText(lettersCount) {
-    const label = document.querySelector('.textarea-editor__label');
+    const label = getElem('.textarea-editor__label');
     label.textContent = `${lettersCount}/${this.textMax}`; 
   }
 }

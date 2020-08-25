@@ -1,11 +1,5 @@
-export function objToString(obj) {
-	return Object.keys(obj)
-		.map(key => `${key}:${obj[key]}`)
-		.join(';');
-}
-
 export function focus(selector) {
-	document.querySelector(selector).focus();
+	getElem(selector).focus();
 }
 
 export function getDate() {
@@ -18,7 +12,11 @@ export function getDate() {
 	return `${d}.${m}.${y}`
 }
 
-export function getElem(selector) {
+export function getElem(selector, mult = false) {
+	if (mult) {
+		return document.querySelectorAll(selector);
+	}
+	
 	return document.querySelector(selector);
 }
 
@@ -46,4 +44,8 @@ export function addHTML(target, html) {
 
 export function clearHTML(target) {
 	target.innerHTML = '';
+}
+
+export function toArray(target) {
+	return Array.from(target);
 }

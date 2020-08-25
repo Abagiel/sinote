@@ -49,7 +49,6 @@ export class Textarea extends EditorComponent {
   			e.code !== KEYS_CODE.shift
   			) {
   		e.preventDefault()
-  		return;
   	} else if (e.code === KEYS_CODE.enter) {
   		document.execCommand("defaultParagraphSeparator", false, "p");
   	}
