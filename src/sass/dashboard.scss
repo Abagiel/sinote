@@ -6,6 +6,7 @@
 	&-manage {
 		display: flex;
 		justify-content: center;
+		padding: 2rem 0;
 	}
 
 	&-add {
@@ -15,6 +16,7 @@
 		height: 12rem;
 		width: 12rem;
 
+		border: 3px solid hsl(140 50% 50%);
 		border-radius: 5px;
 		color: #000;
 		font-size: 5rem;
@@ -46,10 +48,37 @@
 			padding: 0;
 
 			list-style: none;
+
+			&-item {
+				position: relative;
+
+				&:hover > .dashboard-notes__list-del {
+					display: flex;
+				}
+			}
+			&-del {
+				position: absolute;
+				top: 50%;
+				right: 0;
+
+				display: none;
+				transform: translate(0, -50%);
+
+				border-radius: 5px;
+				color: hsl(0 50% 50%);
+				cursor: pointer;
+				transition: background .3s,
+										color .3s;
+
+				&:hover {
+					background: hsl(0 50% 50%);
+					color: #fff;
+				}
+			}
 		}
 
 		&__link {
-			padding: .4rem 2rem;
+			padding: .8rem 2rem;
 			display: flex;
 			justify-content: space-between;
 

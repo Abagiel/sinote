@@ -4,6 +4,20 @@ export function objToString(obj) {
 		.join(';');
 }
 
+export function focus(selector) {
+	document.querySelector(selector).focus();
+}
+
+export function getDate() {
+	const date = new Date();
+	const d = date.getDate();
+	let m = date.getMonth() + 1 + '';
+	m = m.padStart(2, '0');
+	const y = date.getFullYear();
+
+	return `${d}.${m}.${y}`
+}
+
 export function getElem(selector) {
 	return document.querySelector(selector);
 }

@@ -1,11 +1,30 @@
 import { Page } from './Page';
 import { createElem, addHTML } from '@base/utils';
+import { createTableRecords } from '@/pages/dashboard.functions';
 
 export class DashboardPage extends Page {
-	render() {
-		const key = Date.now().toString();
-		const root = createElem('div', 'dashboard-container');
-		addHTML(root, `
+  render() {
+    this.key = Date.now().toString();
+    this.root = createElem('div', 'dashboard-container');
+    this.root.addEventListener('click', this.dbDeleteItem);
+
+    this.createDB(this.key);
+
+    return this.root;
+  }
+
+  dbDeleteItem = (e) => {
+    const type = e.target.dataset.btn;
+
+    if (type === 'delete-item') {
+      const key = e.target.dataset.key;
+      localStorage.removeItem(key);
+      this.createDB(this.key);
+    }
+  }
+
+  createDB(key) {
+    addHTML(this.root, `
 			<div class="dashboard-manage">
 				<a class="dashboard-add" href="#note/${key}">+</a>
 			</div>
@@ -15,20 +34,18 @@ export class DashboardPage extends Page {
 					<span>Create Date</span>
 				</div>
 				<ul class="dashboard-notes__list">
-					<li>
-						<a href="#" class="dashboard-notes__link">
-							<span>Miridi</span>
-							<span>12.03.183</span>
-						</a>
-					</li>
+					${createTableRecords()}
 				</ul>
 			</div>
 		`);
+  }
 
-		return root;
-	}
+  afterRender() {
+    this.items = Array.from(document.querySelectorAll('.dashboard-notes__list-item'));
+  }
 
-	afterRender() {
-
-	}
+  destroy() {
+    console.log('destroy');
+    this.root.removeEventListener('click', this.dbDeleteItem);
+  }
 }

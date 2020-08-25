@@ -10,6 +10,7 @@ export class Toolbar extends EditorComponent {
 			listeners: ['click'],
 			...options
 		});
+		this.btns = [];
 	}
 
 	toHTML() {
@@ -17,19 +18,40 @@ export class Toolbar extends EditorComponent {
 	}
 
 	onClick = (e) => {
-		const type = e.target.closest('button').dataset.btn;
+		const type = e.target.dataset.btn;
+
+		if (!type) return;
+
 		document.execCommand(type);
+		this.btnsStatus();
 	}
 
 	createSimpleBtn = ({ format, style }) => {
 		return `
 		<button class="toolbar-btn" data-btn="${format}">
-			<span class="material-icons">${style}</span>
+			<span class="material-icons" data-btn="${format}">${style}</span>
 		</button>`
+	}
+
+	findAllBtns() {
+		this.btns = Array.from(document.querySelectorAll('.toolbar-btn'));
+	}
+
+	btnsStatus = () => {
+		FORMAT_BTNS.forEach(({ format }, idx) => {
+			if (!document.queryCommandState(format)) {
+				this.btns[idx].classList.remove('active');
+			} else {
+				this.btns[idx].classList.add('active');
+			}
+		})
 	}
 
 	init() {
 		super.init();
+
+		this.findAllBtns();
+		this.preemit('btn:status', this.btnsStatus);
 	}
 
 }

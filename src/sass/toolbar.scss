@@ -5,8 +5,7 @@
 		grid-row-gap: .5rem;
 		grid-column-gap: .5rem;
 		justify-content: center;
-		margin-bottom: 1rem;
-		padding: 0.5rem;
+		padding: 2rem;
 
 		background: #fff;
 		border-bottom: 2px solid #fff;
@@ -24,10 +23,14 @@
 		border: none;
 		border-radius: 5px;
 		cursor: pointer;
-		transition: background .3s;
+		transition: background .3s
+								color .3s;
 
 		&:hover {
 			background: hsl(0 0% 95%);
+		}
+		&.active {
+			color: hsl(260 90% 50%);
 		}
 	}
 }

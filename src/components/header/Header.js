@@ -12,8 +12,13 @@ export class Header extends EditorComponent {
 	}
 
 	toHTML() {
+		const { title } = this.store.getState();
+
 		return `
-			<div class="header" contenteditable>Title</div>
+			<div class="header" contenteditable>${title}</div>
+			<a href="#dashboard" class="header-exit">
+				<span class="material-icons">exit_to_app</span>
+			</a>
 		`
 	}
 

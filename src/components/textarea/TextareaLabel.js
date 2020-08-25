@@ -5,24 +5,22 @@ export class TextareaLabel extends EditorComponent {
 
   constructor(options) {
     super(null, options);
-    this.textLength = 0;
     this.textMax = 500;
   }
 
-  toHTML() {
+  toHTML(lettersCount) {
     return `
-      <span class="textarea-editor__label">${this.textLength}/${this.textMax}</span>`;
+      <span class="textarea-editor__label">${lettersCount}/${this.textMax}</span>`;
   }
 
   init() {
   	this.preemit('editor:input', (text) => {
-  		this.textLength = text.length;
-    	this.changeLabelText();
-  	})
+    	this.changeLabelText(text.length);
+  	});
   }
 
-  changeLabelText() {
+  changeLabelText(lettersCount) {
     const label = document.querySelector('.textarea-editor__label');
-    label.textContent = `${this.textLength}/${this.textMax}`; 
+    label.textContent = `${lettersCount}/${this.textMax}`; 
   }
 }

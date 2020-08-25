@@ -1,5 +1,5 @@
 import { EditorComponent } from '@base/EditorComponent';
-import { createElem } from '@base/utils';
+import { createElem, focus } from '@base/utils';
 import { TextareaLabel } from '@/components/textarea/TextareaLabel';
 import { KEYS_CODE } from '@/constants';
 import { changeText } from '@/redux/actions';
@@ -9,26 +9,32 @@ export class Textarea extends EditorComponent {
 
   constructor(root, options) {
     super(root, {
-      listeners: ['input', 'keydown'],
+      listeners: ['input', 'keydown', 'keyup', 'click'],
       ...options
     });
     this.label = new TextareaLabel(options);
   }
 
   toHTML() {
+    const { lettersCount, html } = this.store.getState();
+
     return `
-      <div class="textarea-editor" contenteditable="true"></div>
-      ${this.label.toHTML()}`
+      <div class="textarea-editor" contenteditable="true">${html.trim()}</div>
+      ${this.label.toHTML(lettersCount)}`
   }
 
   init() {
   	super.initListeners();
     this.label.init()
+    focus('.textarea-editor');
+    this.emit('btn:status');
   }
 
   onInput = (e) => {
-  	this.emit('editor:input', e.target.textContent);
-    this.dispatch(changeText(e.target.textContent));
+    const tr = e.target;
+    const text = tr.textContent;
+  	this.emit('editor:input', text);
+    this.dispatch(changeText(text, tr.innerHTML, text.length));
   }
 
   onKeydown = (e) => {
@@ -47,5 +53,13 @@ export class Textarea extends EditorComponent {
   	} else if (e.code === KEYS_CODE.enter) {
   		document.execCommand("defaultParagraphSeparator", false, "p");
   	}
+  }
+
+  onKeyup = () => {
+    this.emit('btn:status');
+  }
+
+  onClick = () => {
+    this.emit('btn:status');
   }
 }

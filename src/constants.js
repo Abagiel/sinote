@@ -27,12 +27,12 @@ export const FORMAT_BTNS =
 			style: 'strikethrough_s'
 		}, 
 		{
-			format: 'justifyCenter', 
-			style: 'format_align_center'
-		}, 
-		{
 			format: 'justifyLeft', 
 			style: 'format_align_left'
+		}, 
+		{
+			format: 'justifyCenter', 
+			style: 'format_align_center'
 		}, 
 		{
 			format: 'justifyRight', 

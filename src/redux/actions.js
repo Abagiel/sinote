@@ -1,9 +1,13 @@
 import { CHANGE_TEXT, CHANGE_TITLE } from '@/redux/types';
 
-export function changeText(data) {
+export function changeText(text, html, count) {
 	return {
 		type: CHANGE_TEXT, 
-		data
+		data: {
+			text,
+			html,
+			count
+		}
 	}
 }
 
