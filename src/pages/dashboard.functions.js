@@ -1,4 +1,5 @@
 import { storage } from '@/client/storage';
+import { convertTimestampTo } from '@base/utils';
 
 function getKeys() {
 	const keys = [];
@@ -13,15 +14,25 @@ function getKeys() {
 	return keys;
 }
 
+function sortTableRecords(a, b) {
+	const ac = storage(a);
+	const bc = storage(b);
+
+	return bc.lastOpened - ac.lastOpened;
+}
+
 export function createTableRecords() {
-	let keys = getKeys()
-		.sort((a, b) => b.split(':')[1] - a.split(':')[1]);
+	let keys = getKeys().sort(sortTableRecords);
+
 	keys = keys.map(key => {
-		const { title, createDate } = storage(key);
+		const { title, createDate, lastOpened } = storage(key);
+		const passTime = convertTimestampTo(lastOpened);
+
 		return `
 			<li class="dashboard-notes__list-item">
-				<a href="#note/${key.split(':')[1]}" class="dashboard-notes__link">
+				<a href="#note/${key.split(':')[1]}" class="dashboard-notes__link dashboard-grid">
 					<span>${title}</span>
+					<span>${passTime}</span>
 					<span>${createDate}</span>
 				</a>
 				<div class="dashboard-notes__list-del" data-btn="delete-item" data-key="${key}">
@@ -29,6 +40,10 @@ export function createTableRecords() {
 				</div>
 			</li>`
 	})
+
+	if (!keys.length) {
+		return '<h3>There are not any records</h3>'
+	}
 
 	return keys.join('');
 }

@@ -1,4 +1,4 @@
-import { CHANGE_TEXT, CHANGE_TITLE } from '@/redux/types';
+import { CHANGE_TEXT, CHANGE_TITLE, START_STATE } from '@/redux/types';
 
 export function rootReducer(state, action) {
 	switch(action.type) {	
@@ -13,6 +13,9 @@ export function rootReducer(state, action) {
 
 		case CHANGE_TITLE:
 			return {...state, title: action.data};
+
+		case START_STATE:
+			return { ...state }
 
 		default: return { ...state }
 	}

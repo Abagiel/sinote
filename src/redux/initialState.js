@@ -1,18 +1,22 @@
 import { TITLE_NAME } from '@/constants';
 import { getDate } from '@base/utils';
 
+const date = getDate();
+
 const defaultState = {
 	title: TITLE_NAME,
 	text: '',
 	html: '',
 	lettersCount: 0,
-	createDate: getDate()
+	createDate: date,
+	lastOpened: Date.now()
 }
 
 function normalize(state) {
 	return {
 		...defaultState,
-		...state
+		...state,
+		lastOpened: Date.now()
 	}
 }
 

@@ -1,4 +1,4 @@
-import { CHANGE_TEXT, CHANGE_TITLE } from '@/redux/types';
+import { CHANGE_TEXT, CHANGE_TITLE, START_STATE } from '@/redux/types';
 
 export function changeText(text, html, count) {
 	return {
@@ -15,5 +15,11 @@ export function changeTitle(data) {
 	return {
 		type: CHANGE_TITLE, 
 		data
+	}
+}
+
+export function startState() {
+	return {
+		type: START_STATE
 	}
 }

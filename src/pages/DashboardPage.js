@@ -19,8 +19,10 @@ export class DashboardPage extends Page {
     if (type === 'delete-item') {
       const key = e.target.dataset.key;
       localStorage.removeItem(key);
-      this.createDB(this.key);
+    } else if (type === 'delete-all-item') {
+      localStorage.clear();
     }
+    this.createDB(this.key);
   }
 
   createDB(key) {
@@ -28,10 +30,14 @@ export class DashboardPage extends Page {
       <h2>Dashboard Notes</h2>
 			<div class="dashboard-manage">
 				<a class="dashboard-add" href="#note/${key}">+</a>
+        <button class="dashboard-del" data-btn="delete-all-item">
+          <span class="material-icons" data-btn="delete-all-item">delete</span>
+        </button>
 			</div>
 			<div class="dashboard-notes">
-				<div class="dashboard-notes__fields">
+				<div class="dashboard-notes__fields dashboard-grid">
 					<span>Title</span>
+          <span>Last Opened</span>
 					<span>Create Date</span>
 				</div>
 				<ul class="dashboard-notes__list">
@@ -46,7 +52,6 @@ export class DashboardPage extends Page {
   }
 
   destroy() {
-    console.log('destroy');
     this.root.removeEventListener('click', this.dbDeleteItem);
   }
 }

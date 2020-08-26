@@ -2,6 +2,40 @@ export function focus(selector) {
 	getElem(selector).focus();
 }
 
+export function convertTimestampTo(time) {
+	const now = Date.now();
+	const difference = now - time;
+
+	return defineTime(difference);
+	
+}
+
+function defineTime(difference) {
+	const msPerMinute = 60 * 1000;
+  const msPerHour = msPerMinute * 60;
+  const msPerDay = msPerHour * 24;
+  const msPerMonth = msPerDay * 30;
+  const msPerYear = msPerDay * 365;
+
+	if (difference < msPerMinute) {
+		return fix(difference / 1000) + ' seconds ago';
+	} else if (difference < msPerHour) {
+		return fix(difference / msPerMinute) + ' minutes ago';
+	} else if (difference < msPerDay) {
+		return fix(difference / msPerHour) + ' hours ago';
+	} else if (difference < msPerMonth) {
+		return fix(difference / msPerDay) + ' days ago';
+	} else if (difference < msPerYear) {
+		return fix(difference / msPerMonth) + ' months ago'
+	}
+
+	return fix(difference / msPerYear) + ' years ago';
+}
+
+function fix(data, signs = 0) {
+	return data.toFixed(signs);
+}
+
 export function getDate() {
 	const date = new Date();
 	const d = date.getDate();
