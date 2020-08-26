@@ -14,7 +14,8 @@ function getKeys() {
 }
 
 export function createTableRecords() {
-	let keys = getKeys();
+	let keys = getKeys()
+		.sort((a, b) => b.split(':')[1] - a.split(':')[1]);
 	keys = keys.map(key => {
 		const { title, createDate } = storage(key);
 		return `

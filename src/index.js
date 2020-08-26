@@ -6,4 +6,6 @@ import './sass/index.scss'
 new Router('#app', {
 	dashboard: DashboardPage,
 	note: NotePage 
-})
+}, {
+	'max-length': 1000
+});

@@ -2,9 +2,10 @@ import { ActiveRoute } from './ActiveRoute';
 import { appendTo, clearHTML, getElem } from '@base/utils'
 
 export class Router {
-	constructor(selector, routes) {
+	constructor(selector, routes, settings) {
 		this.placeholder = getElem(selector);
 		this.routes = routes;
+		this.settings = settings;
 
 		this.page = null;
 
@@ -25,7 +26,7 @@ export class Router {
 			? this.routes.note
 			: this.routes.dashboard
 
-		this.page = new Page(ActiveRoute.param);
+		this.page = new Page(ActiveRoute.param, this.settings);
 
 		const root = this.page.render();
 

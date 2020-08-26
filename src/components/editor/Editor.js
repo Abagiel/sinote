@@ -5,7 +5,9 @@ export class Editor {
 	constructor(options) {
 		this.components = options.components;
 		this.store = options.store;
+		this.options = options.settings;
 		this.emitter = new Emitter();
+		this.settings = options.settings;
 	}
 
 	render() {
@@ -13,7 +15,8 @@ export class Editor {
 
 		const componentOptions = {
 			emitter: this.emitter,
-			store: this.store
+			store: this.store,
+			settings: this.settings
 		};
 
 		this.components = this.components.map(Component => {

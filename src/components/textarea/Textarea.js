@@ -12,11 +12,15 @@ export class Textarea extends EditorComponent {
       listeners: ['input', 'keydown', 'keyup', 'click'],
       ...options
     });
+    this.root = root;
     this.label = new TextareaLabel(options);
+    this.settings = options.settings;
   }
 
   toHTML() {
     const { lettersCount, html } = this.store.getState();
+
+    this.root.setAttribute('style', `max-width:${this.settings['max-width'] || 800}px !important;`);
 
     return `
       <div class="textarea-editor" contenteditable="true">${html.trim()}</div>

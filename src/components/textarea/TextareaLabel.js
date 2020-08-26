@@ -6,7 +6,7 @@ export class TextareaLabel extends EditorComponent {
 
   constructor(options) {
     super(null, options);
-    this.textMax = 500;
+    this.textMax = options.settings['max-length'] || 10000;
   }
 
   toHTML(lettersCount) {
