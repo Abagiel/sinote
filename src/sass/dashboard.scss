@@ -72,6 +72,10 @@
 			color: hsl(0 0% 30%);
 			font-size: 1.8rem;
 			font-weight: bold;
+
+			& > span {
+				cursor: pointer;
+			}
 		}
 
 		&__list {

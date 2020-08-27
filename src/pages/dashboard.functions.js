@@ -1,5 +1,6 @@
 import { storage } from '@/client/storage';
 import { convertTimestampTo } from '@base/utils';
+import { chooseSortType } from '@base/sorting';
 
 function getKeys() {
 	const keys = [];
@@ -14,15 +15,9 @@ function getKeys() {
 	return keys;
 }
 
-function sortTableRecords(a, b) {
-	const ac = storage(a);
-	const bc = storage(b);
-
-	return bc.lastOpened - ac.lastOpened;
-}
-
-export function createTableRecords() {
-	let keys = getKeys().sort(sortTableRecords);
+export function createTableRecords(sortTarget, sortType) {
+	let keys = getKeys();
+	keys = chooseSortType(keys, sortTarget, sortType);
 
 	keys = keys.map(key => {
 		const { title, createDate, lastOpened } = storage(key);
