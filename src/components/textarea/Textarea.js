@@ -80,7 +80,8 @@ export class Textarea extends EditorComponent {
   } 
 
   fixClearTextarea = (target, str, html) => {
-    if (str.length === 2 && html.includes('br')) {
+    console.log(html)
+    if (str.length === 2 && html.match(/\s/gm)) {
       target.innerHTML = '';
       this.emit('editor:input', target.textContent);
     }

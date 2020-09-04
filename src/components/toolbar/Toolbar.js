@@ -37,7 +37,6 @@ export class Toolbar extends EditorComponent {
 
 	onChange = (e) => {
 		const file = e.target.files[0];
-		console.log(file)
 		if (file.type !== 'text/plain') return;
 		const reader = new FileReader();
 		reader.onload = (e) => {
