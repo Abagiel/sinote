@@ -32,6 +32,7 @@ export class Textarea extends EditorComponent {
     this.label.init()
     focus('.textarea-editor');
     this.emit('btn:status');
+    this.preemit('btn:addText', this.addText);
   }
 
   onInput = (e) => {
@@ -43,8 +44,10 @@ export class Textarea extends EditorComponent {
 
   onKeydown = (e) => {
   	const str = e.target.textContent;
+    const html = e.target.innerHTML;
+    const max = this.settings['max-length'];
 
-  	if (str.length >= 500 &&
+  	if (str.length >= max &&
   			e.code !== KEYS_CODE.backspace &&
   			e.code !== KEYS_CODE.ctrl &&
   			e.code !== KEYS_CODE.delete &&
@@ -56,6 +59,11 @@ export class Textarea extends EditorComponent {
   	} else if (e.code === KEYS_CODE.enter) {
   		document.execCommand("defaultParagraphSeparator", false, "p");
   	}
+
+    if (e.code === KEYS_CODE.backspace ||
+        e.code === KEYS_CODE.delete) {
+      this.fixClearTextarea(e.target, str, html);
+    }
   }
 
   onKeyup = () => {
@@ -64,5 +72,17 @@ export class Textarea extends EditorComponent {
 
   onClick = () => {
     this.emit('btn:status');
+  }
+
+  addText = (data) => {
+    this.root.querySelector('.textarea-editor').textContent = data;
+    this.emit('editor:input', data);
+  } 
+
+  fixClearTextarea = (target, str, html) => {
+    if (str.length === 2 && html.includes('br')) {
+      target.innerHTML = '';
+      this.emit('editor:input', target.textContent);
+    }
   }
 }

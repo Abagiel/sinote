@@ -7,14 +7,23 @@ export class Toolbar extends EditorComponent {
 
 	constructor(root, options) {
 		super(root, {
-			listeners: ['click'],
+			listeners: ['click', 'change'],
 			...options
 		});
 		this.btns = [];
 	}
 
 	toHTML() {
-		return FORMAT_BTNS.map(this.createSimpleBtn).join('');
+		const textSnippet = `
+			<div>
+				<input type="file" id="file" name="file" class="file"/>
+				<label for="file" class="toolbar-btn">
+					<span class="material-icons">text_snippet</span>
+				</label>
+			</div>
+		 `
+
+		return FORMAT_BTNS.map(this.createSimpleBtn).join('') + textSnippet;
 	}
 
 	onClick = (e) => {
@@ -24,6 +33,18 @@ export class Toolbar extends EditorComponent {
 
 		document.execCommand(type);
 		this.btnsStatus();
+	}
+
+	onChange = (e) => {
+		const file = e.target.files[0];
+		console.log(file)
+		if (file.type !== 'text/plain') return;
+		const reader = new FileReader();
+		reader.onload = (e) => {
+			this.emit('btn:addText', e.target.result);
+		}
+		reader.readAsText(file, 'Windows-1251');
+		e.target.value = '';
 	}
 
 	createSimpleBtn = ({ format, style }) => {
@@ -46,7 +67,7 @@ export class Toolbar extends EditorComponent {
 			}
 		})
 	}
-
+ 
 	init() {
 		super.init();
 
