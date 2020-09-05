@@ -75,8 +75,12 @@ export class Textarea extends EditorComponent {
   }
 
   addText = (data) => {
-    this.root.querySelector('.textarea-editor').textContent = data;
-    this.emit('editor:input', data);
+    const editor = this.root.querySelector('.textarea-editor');
+    editor.innerHTML = editor.innerHTML + data;
+    const text = editor.textContent;
+
+    this.emit('editor:input', text);
+    this.dispatch(changeText(text, editor.innerHTML, text.length));
   } 
 
   fixClearTextarea = (target, str, html) => {

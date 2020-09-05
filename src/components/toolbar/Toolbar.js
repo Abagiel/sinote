@@ -1,7 +1,6 @@
 import { EditorComponent } from '@base/EditorComponent';
 import { FORMAT_BTNS } from '@/constants';
 import { createElem, toArray, getElem } from '@base/utils';
-import { changeText } from '../../redux/actions.js';
 
 export class Toolbar extends EditorComponent {
 	static className = 'toolbar-container';
@@ -43,7 +42,6 @@ export class Toolbar extends EditorComponent {
 		reader.onload = (e) => {
 			const text = e.target.result;
 			this.emit('btn:addText', text);
-			this.dispatch(changeText(text, text, text.length));
 			this.notify('Text was added from a file', 'success');
 		}
 		reader.readAsText(file, 'Windows-1251');

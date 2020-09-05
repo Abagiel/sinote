@@ -68,8 +68,12 @@ export function appendTo(target, children) {
 
 export function createElem(tag, classes = '') {
 	const elem = document.createElement(tag);
-	elem.classList.add(classes);
+	addClass(elem, classes);
 	return elem;
+}
+
+export function addClass(target, classes) {
+	target.classList.add(classes);
 }
 
 export function addHTML(target, html) {

@@ -1,4 +1,4 @@
-import { createElem } from '../../base/utils';
+import { createElem, addClass } from '../../base/utils';
 
 export class Notificator {
   constructor() {
@@ -16,33 +16,43 @@ export class Notificator {
   	message.textContent = text;
 
     switchMessageType(type, message);
+    
   	this.root.append(message);
 
-  	setTimeout(() => {
-      message.animate([
-        {transform: 'translate(100%)'}
-      ], {
-        duration: 300,
-        iterations: 1,
-        fill: 'forwards'
-      });
-    }, time);
-    setTimeout(() => message.remove(), time + 300);
+  	setTimeout(() => animateMessage(message), time - 300);
+    setTimeout(() => this.deleteMessage(message), time);
+  }
+
+  deleteMessage = (message) => {
+    message.remove();
   }
 }
 
 function switchMessageType(type, message) {
   switch(type.toLowerCase()) {
     case 'warning':
-      message.classList.add('warning');
-      return message;
+      addClass(message, 'warning');
+      break;
 
     case 'danger':
-      message.classList.add('danger');
-      return message;
+      addClass(message, 'danger');
+      break;
 
     default: 
-      message.classList.add('success');
-      return message;
+      addClass(message, 'success');
+      break;
   }
+}
+
+function animateMessage(message) {
+  message.animate(
+    [
+      {transform: 'translate(100%)'}
+    ], 
+    {
+      duration: 300,
+      iterations: 1,
+      fill: 'forwards'
+    }
+  );
 }
