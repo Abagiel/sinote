@@ -14,13 +14,20 @@ export class Notificator {
   addMessage(text, type, time = 5000) {
   	const message = createElem('p', 'notificator-message');
   	message.textContent = text;
-    message.style.animationDuration = time + 'ms';
 
     switchMessageType(type, message);
-    message.classList.add('active');
   	this.root.append(message);
 
-  	setTimeout(()=> message.remove(), time);
+  	setTimeout(() => {
+      message.animate([
+        {transform: 'translate(100%)'}
+      ], {
+        duration: 300,
+        iterations: 1,
+        fill: 'forwards'
+      });
+    }, time);
+    setTimeout(() => message.remove(), time + 300);
   }
 }
 
