@@ -8,6 +8,7 @@ export class Editor {
 		this.options = options.settings;
 		this.emitter = new Emitter();
 		this.settings = options.settings;
+		this.notificator = options.notificator;
 	}
 
 	render() {
@@ -16,7 +17,8 @@ export class Editor {
 		const componentOptions = {
 			emitter: this.emitter,
 			store: this.store,
-			settings: this.settings
+			settings: this.settings,
+			notificator: this.notificator
 		};
 
 		this.components = this.components.map(Component => {

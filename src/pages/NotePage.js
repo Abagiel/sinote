@@ -11,12 +11,13 @@ import { normalizeInitState } from '@/redux/initialState';
 import { LocalStorageClient } from '@/client/LocalStorageClient';
 
 export class NotePage extends Page {
-	constructor(param, settings) {
+	constructor(param, settings, notificator) {
 		super(param);
 
 		this.storeSub = null;
 		this.processor = new LocalStorageClient(this.params);
 		this.settings = settings;
+		this.notificator = notificator;
 	}
 
 	render() {
@@ -30,7 +31,8 @@ export class NotePage extends Page {
 		this.note = new Editor({
 			components: [Header, Toolbar, Textarea], 
 			store, 
-			settings: this.settings
+			settings: this.settings,
+			notificator: this.notificator
 		});
 
 		return this.note.render();

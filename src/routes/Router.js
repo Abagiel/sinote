@@ -1,5 +1,6 @@
 import { ActiveRoute } from './ActiveRoute';
 import { appendTo, clearHTML, getElem } from '@base/utils'
+import { Notificator } from '../components/notificator/Notificator';
 
 export class Router {
 	constructor(selector, routes, settings) {
@@ -8,6 +9,8 @@ export class Router {
 		this.settings = settings;
 
 		this.page = null;
+
+		this.notificator = new Notificator();
 
 		this.init();
 	}
@@ -26,7 +29,7 @@ export class Router {
 			? this.routes.note
 			: this.routes.dashboard
 
-		this.page = new Page(ActiveRoute.param, this.settings);
+		this.page = new Page(ActiveRoute.param, this.settings, this.notificator);
 
 		const root = this.page.render();
 

@@ -43,7 +43,8 @@ export class Toolbar extends EditorComponent {
 		reader.onload = (e) => {
 			const text = e.target.result;
 			this.emit('btn:addText', text);
-			this.dispatch(changeText(text, text, text.length))
+			this.dispatch(changeText(text, text, text.length));
+			this.notify('Text was added from a file', 'success');
 		}
 		reader.readAsText(file, 'Windows-1251');
 		e.target.value = '';

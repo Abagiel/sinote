@@ -5,6 +5,7 @@ export class EditorComponent extends DomListener {
 		super(root, options.listeners);
 		this.emitter = options.emitter;
 		this.store = options.store;
+		this.notificator = options.notificator;
 		this.unsubscribers = [];
 	}
 
@@ -19,6 +20,10 @@ export class EditorComponent extends DomListener {
 
 	dispatch(action) {
 		this.store.dispatch(action);
+	}
+
+	notify(text, type) {
+		this.notificator.addMessage(text, type);
 	}
 
 	init() {

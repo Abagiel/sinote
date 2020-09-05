@@ -20,3 +20,52 @@ body {
 	box-sizing: inherit;
 	font-size: 1.4rem;
 }
+
+.notificator {
+	&-container {
+		position: absolute;
+		top: 1.6rem;
+		right: 0;
+		z-index: 100;
+
+		max-width: 200px;
+	}
+
+	&-message {
+		margin: 0 0 .5rem;
+		padding: 1rem 1rem;
+
+		border-radius: 5px;
+		font-size: 2.1rem;
+		text-align: center;
+
+		animation-name: moveLeft;
+		animation-iteration-count: 1;
+		animation-play-state: running; 
+
+		&.danger {
+			background: hsl(340 80% 92%);
+			border-left: 3px solid hsl(340 50% 50%);
+			color: hsl(340 50% 50%);
+		}
+		&.warning {
+			background: hsl(60 80% 92%);
+			border-left: 3px solid hsl(60 50% 50%);
+			color: hsl(60 50% 50%);
+		}
+		&.success {
+			background: hsl(140 80% 92%);
+			border-left: 3px solid hsl(140 50% 50%);
+			color: hsl(140 50% 50%);
+		}
+	}
+}
+
+@keyframes moveLeft {
+	0% {
+    transform: translateX(100%);
+	}
+	50% {
+		transform: translateX(0);
+	}
+}
