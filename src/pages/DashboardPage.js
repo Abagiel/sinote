@@ -6,14 +6,14 @@ export class DashboardPage extends Page {
   render() {
     this.key = Date.now().toString();
     this.root = createElem('div', 'dashboard-container');
-    this.root.addEventListener('click', this.dbDeleteItem);
+    this.root.addEventListener('click', this.dbClickHandler);
 
     this.createDB(this.key, 'last-opened', 'true');
 
     return this.root;
   }
 
-  dbDeleteItem = (e) => {
+  dbClickHandler = (e) => {
     const type = e.target.dataset.btn;
 
     if (type === 'delete-item') {
@@ -65,6 +65,6 @@ export class DashboardPage extends Page {
   }
 
   destroy() {
-    this.root.removeEventListener('click', this.dbDeleteItem);
+    this.root.removeEventListener('click', this.dbClickHandler);
   }
 }

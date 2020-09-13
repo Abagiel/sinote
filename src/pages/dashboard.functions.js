@@ -17,6 +17,11 @@ function getKeys() {
 
 export function createTableRecords(sortTarget, sortType) {
 	let keys = getKeys();
+
+	if (!keys.length) {
+		return '<h3>There are not any records</h3>'
+	}
+
 	keys = chooseSortType(keys, sortTarget, sortType);
 
 	keys = keys.map(key => {
@@ -34,11 +39,7 @@ export function createTableRecords(sortTarget, sortType) {
 					<span class="material-icons" data-btn="delete-item" data-key="${key}">delete</span>
 				</div>
 			</li>`
-	})
-
-	if (!keys.length) {
-		return '<h3>There are not any records</h3>'
-	}
+	});
 
 	return keys.join('');
 }
