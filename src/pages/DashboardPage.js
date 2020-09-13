@@ -3,6 +3,11 @@ import { createElem, addHTML, getElem, toArray } from '@base/utils';
 import { createTableRecords } from '@/pages/dashboard.functions';
 
 export class DashboardPage extends Page {
+  constructor(a, b, notificator) {
+    super();
+    this.notificator = notificator;
+  }
+
   render() {
     this.key = Date.now().toString();
     this.root = createElem('div', 'dashboard-container');
@@ -18,9 +23,11 @@ export class DashboardPage extends Page {
 
     if (type === 'delete-item') {
       const key = e.target.dataset.key;
+      this.notificator.addMessage('Record is deleted!', 'success', 3000);
       localStorage.removeItem(key);
       this.createDB(this.key);
     } else if (type === 'delete-all-item') {
+      this.notificator.addMessage('All records are deleted!', 'success', 3000);
       localStorage.clear();
       this.createDB(this.key);
     }
